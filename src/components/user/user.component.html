@@ -1,6 +1,5 @@
 <div class="full_container">
     <div class="inner_container">
-
         <div id="content">
             <div class="midde_cont">
                 <div class="container-fluid">
@@ -12,30 +11,29 @@
                         </div>
                     </div>
                     <div class="card">
-
                         <div class="card-body">
                             <div class="container mt-5 ">
                             </div>
                             <div class="row">
                                 @for (user of Users; track user._id) {
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="single-product">
-                                        <div class="part-1">
-                                            <img class="section-products img-fluid" src="{{ user.image }}" alt="user">
-                                        </div>
-                                        <div class="part-2">
-                                            <h3 class="product-title">{{ user.name }}</h3>
-                                        </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <a routerLinK="">
+                                            <div class="card h-100">
+                                                <div class="card-image-container">
+                                                    <img class="card-img-top" src="http://localhost:7050/{{ user.image }}" alt="user">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ user.name }}</h5>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </div>
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>

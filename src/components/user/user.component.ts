@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneralMethods } from '../../functions';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule,RouterModule],
   providers:[UserService],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
