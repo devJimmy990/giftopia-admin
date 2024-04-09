@@ -1,4 +1,4 @@
-Website Templet Linsk:
+Website Templete Link:
 https://themewagon.com/themes/pluto-free-bootstrap-4-html5-admin-dashboard-template
 
 ===========================================================================

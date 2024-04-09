@@ -14,19 +14,25 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <div class="container mt-5 ">
+                            <div class="container">
                             </div>
                             <div class="row">
-                                @for (ticket of Tickets; track ticket._id) {
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="single-product">
-                                        <div class="part-1">
-                                            <h3 class="product-title">From: {{ ticket.name }}</h3>
-                                            <p>Message: {{ ticket.message }}</p>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item" *ngFor="let ticket of Tickets; trackBy: trackById">
+                                      <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + ticket._id" aria-expanded="false" [attr.aria-controls]="'collapse' + ticket._id">
+                                          Message from: {{ ticket.name | uppercase}}  ( {{ ticket.email }} )
+                                        </button>
+                                      </h2>
+                                      <div [id]="'collapse' + ticket._id" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="ticket-details">
+                                            <p>Name: {{ ticket.name }}</p>
+                                            <p>Email: {{ ticket.email }}</p>
+                                            <p>{{ ticket.message }}</p>
                                         </div>
+                                      </div>
                                     </div>
-                                </div>
-                                }
+                                  </div>
                             </div>
                         </div>
                     </div>
