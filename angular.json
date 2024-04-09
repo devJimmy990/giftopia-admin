@@ -49,28 +49,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/analyser.js",
-              "src/assets/js/animate.js",
-              
-              "src/assets/js/calendar.js",
-              "src/assets/js/calendar.min.js",
-              "src/assets/js/chart_custom_style1.js",
-              "src/assets/js/chart_custom_style2.js",
-              "src/assets/js/Chart.bundle.js",
-              "src/assets/js/Chart.bundle.min.js",
-              "src/assets/js/Chart.js",
-              "src/assets/js/Chart.min.js",
-              "src/assets/js/custom_chart.js",
-              "src/assets/js/custom.js",
-              "src/assets/js/jquery-3.3.1.min.js",
-              "src/assets/js/jquery.fancybox.js",
-              "src/assets/js/jquery.fancybox.min.js",
-              "src/assets/js/jquery.min.js",
-              "src/assets/js/owl.carousel.js",
-              "src/assets/js/perfect-scrollbar.min.js",
-              "src/assets/js/popper.min.js",
-              "src/assets/js/semantic.min.js",
-              "src/assets/js/utils.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
