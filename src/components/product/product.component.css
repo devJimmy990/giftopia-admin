@@ -1,0 +1,30 @@
+#add{ 
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    font-size: 40px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: rgb(41, 41, 212);
+    color: #fff;
+    border: none;
+}
+
+tr, td{
+    text-align: center;
+}
+tr{
+    display: flex;
+}
+.action{
+    border: none;
+    font-size: 14px;
+    margin: 0px 2.5px;
+    padding: .5px 12px;
+    border-radius: 13px;
+}
+img{
+    width: 80px; 
+    height: 80px;
+}
