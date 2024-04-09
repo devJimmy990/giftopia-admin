@@ -1,1 +1,39 @@
-<p>ticket works!</p>
+<div class="full_container">
+    <div class="inner_container">
+
+        <div id="content">
+            <div class="midde_cont">
+                <div class="container-fluid">
+                    <div class="row column_title">
+                        <div class="col-md-12">
+                            <div class="page_title">
+                                <h2>Ticket Management</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="container mt-5 ">
+                            </div>
+                            <div class="row">
+                                @for (ticket of Tickets; track ticket._id) {
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                    <div class="single-product">
+                                        <div class="part-1">
+                                            <h3 class="product-title">From: {{ ticket.name }}</h3>
+                                            <p>Message: {{ ticket.message }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

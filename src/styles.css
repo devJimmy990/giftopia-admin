@@ -1101,7 +1101,6 @@ a[data-toggle="collapse"] {
 }
 
 .counter_section {
-    min-height: auto;
     display: block;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     border: 0px solid #e7e7e7;
@@ -1202,12 +1201,10 @@ a[data-toggle="collapse"] {
     margin-top: 10px;
 }
 
-#rebenue {}
 
 .graph_revenue {
     padding: 0;
     margin-top: 0;
-    min-height: auto;
 }
 
 .graph_head {
@@ -1565,7 +1562,6 @@ a[data-toggle="collapse"] {
     font-size: 14px;
     text-align: center;
     overflow: hidden;
-    min-height: auto;
 }
 
 #testimonial_slider.carousel .item a {
@@ -1914,7 +1910,6 @@ button.main_bt {
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     background: #fff;
-    min-height: auto;
 }
 
 .dashboard_2 .social_icon {
@@ -2397,7 +2392,6 @@ h2.invoice_head small {
     background-color: #fff;
 }
 
-.table_row tbody {}
 
 .table_row tbody tr {
     border: none;
@@ -2631,7 +2625,6 @@ ul.inbox-nav li a i {
     top: 1px;
 }
 
-ul.inbox-nav li a span.label {}
 
 ul.labels-info li h4 {
     color: #5c5c5e;
@@ -3163,7 +3156,6 @@ ul.labels-category li p {
     padding: 7px 0;
 }
 
-.bottom_list .left_rating p.ratings a {}
 
 .fa.fa-star {
     color: #ff9800;

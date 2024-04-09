@@ -19,4 +19,11 @@ export class GeneralMethods {
 
     static CastCart = (param: any) =>
         (param["data"] as CartModel);
+
+    static CastTickets = (param: any) =>
+        (param["data"] as TicketModel[]);
+
+    static CastOrders = (param: any) =>
+        (param["data"] as OrderModel[]);
+
 }

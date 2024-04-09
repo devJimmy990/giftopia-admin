@@ -11,7 +11,7 @@ export class ProductService extends BaseService {
 
   constructor(http: HttpClient) { super(http) }
 
-  getAllProducts(): Observable<Object> {
+  getProducts(): Observable<Object> {
     return this.http.get(this.URL);
   }
 

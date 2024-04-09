@@ -1,0 +1,16 @@
+#add{ 
+    position: fixed;
+    bottom: 20px;
+    right: 25px;
+    font-size: 40px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: rgb(41, 41, 212);
+    color: #fff;
+    border: none;
+}
+img{
+    width: 80px; 
+    height: 80px;
+}

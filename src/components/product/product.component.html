@@ -12,9 +12,10 @@
                         </div>
                     </div>
                     <div class="card">
-                       
+
                         <div class="card-body">
                             <div class="container mt-5 ">
+                                <button type="button" id="sort" (click)="toggleSort()">Sort by Price: <span>{{btnSortToggle}}</span></button>
                                 <div class="d-flex justify-content-end mb-4">
                                     <button id="add" routerLink="/student">+</button>
                                 </div>
@@ -39,9 +40,9 @@
                                                 <td>${{prd.price}}</td>
                                                 <td>{{prd.cat[0]}}</td>
                                                 <td>
-                                                    <button class="action btn btn-info btn-sm">View</button>
-                                                    <button class="action btn btn-warning btn-sm">Edit</button>
-                                                    <button class="action btn btn-danger btn-sm">Delete</button>
+                                                    <button type="button" class="action btn btn-info btn-sm">View</button>
+                                                    <button type="button" class="action btn btn-warning btn-sm">Edit</button>
+                                                    <button type="button" class="action btn btn-danger btn-sm">Delete</button>
                                                 </td>
                                             </tr>
                                         }
