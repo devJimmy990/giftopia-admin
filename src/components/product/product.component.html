@@ -1,101 +1,96 @@
 <div class="full_container">
-    <div class="inner_container">
-
-        <div id="content">
-            <div class="midde_cont">
-                <div class="container-fluid">
-                    <div class="row column_title">
-                        <div class="col-md-12">
-                            <div class="page_title">
-                                <h2>Product Management</h2>
-                            </div>
+    <div id="top"></div>
+    <div id="content">
+        <div class="midde_cont">
+            <div class="container-fluid">
+                <div class="row column_title">
+                    <div class="col-md-12">
+                        <div class="page_title">
+                            <h2>Product Management</h2>
                         </div>
                     </div>
-                    <div class="card">
-
-                        <div class="card-body">
-                            <div class="container mt-5 ">
-                                <button type="button" id="sort" (click)="toggleSort()">Sort by Price: <span>{{btnSortToggle}}</span></button>
-                                <div class="d-flex justify-content-end mb-4">
-                                    <button id="add" routerLink="/student">+</button>
-                                </div>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for (prd of Products; track prd._id) {
-                                            <tr>
-                                                <td scope="row"> 
-                                                    <img class="ms-cart-pro-img mr-4 rounded-circle" [src]="prd.images[0]" alt="">
-                                                  </td>
-                                                  
-                                                <td>{{prd.name}}</td>
-                                                <td>${{prd.price}}</td>
-                                                <td>{{prd.cat[0]}}</td>
-                                                <td>
-                                                    <button type="button" class="action btn btn-info btn-sm">View</button>
-                                                    <button type="button" class="action btn btn-warning btn-sm">Edit</button>
-                                                    <button type="button" class="action btn btn-danger btn-sm">Delete</button>
-                                                </td>
-                                            </tr>
-                                        }
-                                      
-                                        <!-- Repeat for each product -->
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                            <!-- Modal for Adding/Editing Products -->
-                            <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="productModalLabel">New Product</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="form-group">
-                                                    <label for="productName">Product Name</label>
-                                                    <input type="text" class="form-control" id="productName">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="productPrice">Price</label>
-                                                    <input type="number" class="form-control" id="productPrice">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="productCategory">Category</label>
-                                                    <select class="form-control" id="productCategory">
-                                                        <option>Electronics</option>
-                                                        <option>Clothing</option>
-                                                        <option>Accessories</option>
-                                                        <!-- Add other categories as needed -->
-                                                    </select>
-                                                </div>
-                                                <!-- Include other fields as necessary -->
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                      
                 </div>
+                @if (Products.length == 0) {
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                }@else {
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container">
 
+
+                            @if (isDetailsPopup)
+                            { <app-product-details [selectedProduct]="selectedProduct" (close)="closePopup($event)"
+                                (endAction)="closePopup($event)"></app-product-details>}
+
+                            <div class="dropdown">
+                                <button class=" dropdown-toggle" type="button" (mouseenter)="showDropdown = true"
+                                    id="sort" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sort Products By
+                                </button>
+                                @if (showDropdown) {
+                                <ul class="dropdown-menu show" aria-labelledby="sortDropdownMenuButton"
+                                    (mouseleave)="showDropdown = false">
+                                    <li class="dropdown-item" (click)="togglePriceSort('lth')" role="button">Price: Low
+                                        to High</li>
+                                    <li class="dropdown-item" (click)="togglePriceSort('htl')" role="button">Price: High
+                                        to Low</li>
+                                    <li class="dropdown-item" (click)="sortByCategories()" role="button">Sort by
+                                        Category</li>
+                                </ul>
+                                }
+                            </div>
+                            <div (mouseleave)="showTop = false" (mouseenter)="showTop = true"
+                                class="d-flex flex-column mb-4 position-fixed bottom-0 end-0 me-5 col-1">
+                                @if (showTop) {
+                                <button class="btn btn-primary btn-floating mt-2"
+                                    (click)="moveTop()">&uparrow;</button>
+                                } <button class="btn btn-primary btn-floating"
+                                    (click)="openDetailedPopup()">+</button>
+                            </div>
+                            @if (isViewPopup)
+                            { <app-popup-product [popupProduct]="popupProduct"
+                                (close)="closePopup($event)"></app-popup-product>}
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (prd of Products; track prd._id) {
+                                    <tr>
+                                        <td scope="row">
+                                            <img [src]="prd.images[0]" alt=""
+                                                class="ms-cart-pro-img mr-4 rounded-circle">
+                                        </td>
+                                        <td>{{prd.name}}</td>
+                                        <td>${{prd.price}}</td>
+                                        <td>{{prd.cat[0]}}</td>
+                                        <td>
+                                            <button type="button" (click)="viewProduct(prd)"
+                                                class="action btn btn-info btn-sm">View</button>
+                                            <button type="button" (click)="editProduct(prd)" data-bs-toggle="collapse"
+                                                href="#top" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                                aria-controls="flush-collapseOne"
+                                                class="action btn btn-warning btn-sm">Edit</button>
+                                            <button type="button" (click)="deleteProduct(prd._id, prd.name)"
+                                                class="action btn btn-danger btn-sm">Delete</button>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                }
             </div>
         </div>
     </div>

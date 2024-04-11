@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        @if (Categories.length>0) {
+        <form [formGroup]="myFormGroup" class="col-12 col-sm-10 col-md-8 col-lg-6 p-4 rounded bg-light">
+            <div class="mb-3">
+                <label for="name" class="form-label text-primary">Name</label>
+                <input formControlName="name" type="text" class="form-control" id="name"
+                    placeholder="Enter product name">
+                @if (!isNameValid) {<p class="m-0 pt-0 ps-3 fst-italic fw-bolder text-danger">{{validator.name}}</p> }
+            </div>
+
+            <div class="mb-3">
+                <label for="desc" class="form-label text-primary">Description</label>
+                <input formControlName="desc" type="text" class="form-control" id="desc"
+                    placeholder="Enter product description">
+                @if (!isDescValid) { <p class="m-0 pt-0 ps-3 fst-italic fw-bolder text-danger">{{validator.desc}}</p>}
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="price" class="form-label text-primary">Price</label>
+                    <input formControlName="price" type="number" class="form-control" id="price"
+                        placeholder="Enter product price">
+                    @if (!isPriceValid) { <p class="m-0 pt-0 ps-3 fst-italic fw-bolder text-danger">{{validator.price}}
+                    </p>}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="discount" class="form-label text-primary">Discount</label>
+                    <input formControlName="discount" type="number" class="form-control" id="discount"
+                        placeholder="Enter discount percentage">
+                    @if (!isDiscountValid) { <p class="m-0 pt-0 ps-3 fst-italic fw-bolder text-danger">
+                        {{validator.discount}}</p>}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="quantity" class="form-label text-primary">Quantity</label>
+                    <input formControlName="quantity" type="number" class="form-control" id="quantity"
+                        placeholder="Enter product quantity">
+                    @if (!isQuantityValid) { <p class="m-0 pt-0 ps-3 fst-italic fw-bolder text-danger">
+                        {{validator.quantity}}</p>}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="category" class="form-label text-primary">Category</label>
+                    <select formControlName="category" class="form-select" id="category">
+                        @if (isUpdate) {
+                        <option value="" selected>{{selectedProduct.cat[0]}}</option>
+                        }@else{
+                        <option value="" selected>Select category</option>
+                        @for (cat of Categories; track cat._id) {
+                        <option [value]="cat.name">{{cat.name}}</option>
+                        }
+                        }
+                    </select>
+                    @if (!isCategoryValid)
+                    { <p class="m-0 pt-0 ps-3 fst-italic fw-bolder text-danger"> {{validator.category}}</p>}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="images" class="form-label text-primary">Images</label>
+                @if (imgList.length > 0) {
+                <div id="div-images" class="my-2">
+                    @for (img of imgList; track $index)
+                    {<img src="{{img}}" alt="img" class="mx-2 img-fluid" width="75px" height="75px"> }
+                </div>
+                }
+                @if (isAddingNewImage) {
+                <div>
+                    <input formControlName="image" type="text" class="form-control" (keyup)="handelImageChange($event)"
+                        placeholder="Enter image URL">
+                    @if (!isImageValid) { <p class="m-0 pt-0 ps-3 fst-italic fw-bolder text-danger">{{validator.image}}
+                    </p>
+                    }
+
+                </div>
+                }
+                <button type="button" class="btn btn-outline-primary mb-3"
+                    (click)="addImageAction()">{{btnImageAction}}</button>
+            </div>
+            <div class="d-flex justify-content-evenly col-12">
+                <button type="button" (click)="AddNeworUpdate()" class="btn btn-primary col-4">{{ btnAction }}</button>
+                <button type="button" (click)="discardAll()" class="btn btn-primary col-4">Discard</button>
+            </div>
+            @if (isSuccess) { <p class="mt-2 pt-0 ps-3 fst-italic fw-bolder text-success text-center">
+                {{isUpdate?"Updated":"Added"}} Successfully.... Back in <span>{{counter}}.. </span></p>
+            }
+        </form>
+        }@else {
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        }
+    </div>
+</div>

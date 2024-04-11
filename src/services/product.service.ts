@@ -22,4 +22,14 @@ export class ProductService extends BaseService {
   getProductByID(Pid: string): Observable<Object> {
     return this.http.get(`${this.URL}/${Pid}`);
   }
+
+  addProduct(prd: ProductModel): Observable<Object> {
+    return this.http.post(this.URL, prd);
+  }
+  updateProduct(prd: ProductModel, id:string): Observable<Object> {
+    return this.http.put(`${this.URL}/${id}`, prd);
+  }
+  deleteProduct(id: string): Observable<Object> {
+    return this.http.delete(`${this.URL}/${id}`);
+  }
 }

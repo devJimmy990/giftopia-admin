@@ -1,0 +1,63 @@
+<div class="main d-flex justify-content-center align-items-center">
+    <div class="col-lg-7">
+        <div class="card border-0 shadow rounded-5">
+            <div class="card-body">
+                <div class="row d-flex">
+                    <div class="col-md-5">
+                        <div id="productImageCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{popupProduct.images[0]}}" alt="Product Image" class="d-block w-100">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#productImageCarousel" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only text-danger">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#productImageCarousel" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 d-flex flex-column justify-content-center">
+                        <h3 class="card-title">{{popupProduct.name}}</h3>
+                        <div class="rating mb-3">
+                            <span class="text-warning">★★★★☆</span>
+                            <span class="text-muted ml-2">({{popupProduct.star}} of 5 Stars)</span>
+                        </div>
+                        <div class="price mb-3">
+                            <span class="discount-price">{{(popupProduct.price *
+                                (1-(popupProduct.discount/100)))}} </span>
+                            @if(popupProduct.discount > 0){
+
+                            <span class="ml-2"> - </span>
+                            <span class="original-price ml-2 text-decoration-line-through">{{popupProduct.price}}</span>
+                            <span class="badge badge-success ml-2">-{{popupProduct.discount}}%</span>
+                        }
+                        </div>
+                        <div class="stock mb-3">
+                            @if (popupProduct.quantity > 0) {
+                            <span class="text-muted">Available Stock: {{popupProduct.quantity}}</span>
+                            }@else {
+                            <span class="text-muted">Out of Stock</span>
+                            }
+                        </div>
+                        <div class="text-start">
+                            <h4 class="m-0 p-0 pb-1">Description:</h4>
+                            <p class="m-0 p-0">{{popupProduct.desc}}.</p>
+                        </div>
+                        <div class="position-absolute top-0 end-0">
+                            <a (click)="closePopup()" role="button" aria-label="Close"
+                                class="position-absolute  btn-link top-0 end-0 m-3 ">
+                                <i class="fa fa-times-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
