@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketService extends BaseService {
-  private URL = `${this.BASE_URL}/contact`
+  private URL = `${this.BASE_URL}/ticket`
 
   constructor(http: HttpClient) { super(http); }
 

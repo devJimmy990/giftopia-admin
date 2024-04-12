@@ -1,6 +1,6 @@
 <div class="full_container">
     <div class="inner_container">
-
+        <div id="top"></div>
         <div id="content">
             <div class="midde_cont">
                 <div class="container-fluid">
@@ -11,35 +11,69 @@
                             </div>
                         </div>
                     </div>
+                    @if (Categories.length == 0) {
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    }@else {
                     <div class="card">
 
                         <div class="card-body">
-                            <div class="container mt-5 ">
-                                <div class="d-flex justify-content-end mb-4">
-                                    <button id="add" routerLink="/student">+</button>
+                            <div class="container mt-1">
+                                @if (isDetailsPopup)
+                                { <app-category-details [selectedCategory]="selectedCategory"
+                                    (close)="closePopup($event)"
+                                    (endAction)="closePopup($event)"></app-category-details>}
+
+                                <div class="dropdown mb-3">
+                                    <button class=" dropdown-toggle" type="button" (mouseenter)="showDropdown = true"
+                                        id="sort" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Sort Categories By
+                                    </button>
+                                    @if (showDropdown) {
+                                    <ul class="dropdown-menu show" aria-labelledby="sortDropdownMenuButton"
+                                        (mouseleave)="showDropdown = false">
+                                        <li class="dropdown-item" (click)="toggleProductSort('lth')" role="button">
+                                            Products: Low to High</li>
+                                        <li class="dropdown-item" (click)="toggleProductSort('htl')" role="button">
+                                            Products: High to Low</li>
+
+                                    </ul>
+                                    }
                                 </div>
-                                <div class="row">
-                                    @for (cat of Categories; track cat._id) {
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div class="single-product">
-                                            <div class="part-1">
-                                                <img class="section-products img-fluid" src="{{ cat.image }}"
-                                                    alt="product">
-                                            </div>
-                                            <div class="part-2">
-                                                <h3 class="product-title">{{ cat.name }}</h3>
+                               
+                               
+                            </div>
+                            <div class="row">
+                                @for (cat of Categories; track cat._id) {
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 my-2 body">
+                                    <div class="card bg-dark text-white border-0 rounded-5">
+                                        <div class="card-img-container bg-dark border-0 rounded-5">
+                                            <img src="{{ cat.image }}" class="card-img border-0 rounded-5" alt="image">
+                                            <div class="card-img-overlay card-floating bg-dark">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <i class="fa fa-edit me-1" role="button"
+                                                        (click)="editCategory(cat)"></i>
+                                                    <h5 class="card-title text-center">{{ cat.name }}</h5>
+                                                </div>
+                                                <p class="card-text text-center">Products: {{ cat.products }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    }
                                 </div>
+
+                                }
                             </div>
                         </div>
                     </div>
-
+                    }
                 </div>
 
             </div>
+
         </div>
     </div>
+</div>
+<div class="position-fixed bottom-0 end-0 col-1">
+    <button type="button" class="btn btn-primary btn-floating" (click)="openDetailedPopup()"><i class="fa fa-plus"></i></button>
 </div>

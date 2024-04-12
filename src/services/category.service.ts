@@ -14,4 +14,13 @@ export class CategoryService extends BaseService {
   getCategories(): Observable<Object> {
     return this.http.get(this.URL);
   }
+  updateCategory(cat: any): Observable<Object> {
+    return this.http.put(this.URL, cat);
+  }
+  addCategory(cat: any): Observable<Object> {
+    return this.http.post(this.URL, cat);
+  }
+  deleteCategory(id: string): Observable<Object> {
+    return this.http.delete(`${this.URL}/${id}`);
+  }
 }

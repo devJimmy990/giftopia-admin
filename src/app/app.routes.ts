@@ -6,6 +6,7 @@ import { OrderComponent } from '../components/order/order.component';
 import { TicketComponent } from '../components/ticket/ticket.component';
 import { UserComponent } from '../components/user/user.component';
 import { SettingsComponent } from '../components/settings/settings.component';
+import { TermsConditionsComponent } from '../components/terms-conditions/terms-conditions.component';
 
 export const routes: Routes = [
     { path: "", component: DashboardComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: "ticket", component: TicketComponent },
     { path: "user", component: UserComponent },
     { path: "settings", component: SettingsComponent },
+    { path: "terms", component: TermsConditionsComponent },
     { path: "**", component: DashboardComponent },
 ];
 

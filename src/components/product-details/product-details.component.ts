@@ -19,7 +19,7 @@ export class ProductDetailsComponent implements OnInit {
   myFormGroup: any;
   isSuccess = false;
   counter: number = 3;
-  btnAction = "Register";
+  btnAction = "Update";
   imgList: string[] = [];
   isAddingNewImage = true;
   btnImageAction = "Add Image";
@@ -59,39 +59,39 @@ export class ProductDetailsComponent implements OnInit {
     this.btnAction = this.isUpdate ? "Update" : "Add New";
     this.myFormGroup = this.HandleForm();
   }
+  private fireToastSuccess(data: any) {
+    if (this.isSuccess) {
+      const timer = setInterval(() => {
+        --this.counter;
+      }, 800);
 
+      setTimeout(() => {
+        clearInterval(timer);
+        this.endAction.emit(data);
+      }, 3000);
+    }
+  }
 
   async AddNeworUpdate() {
     const prd = this.fetshProductData();
     if (this.myFormGroup.valid) {
       if (this.isUpdate) {
         this.prdService.updateProduct(prd, this.selectedProduct._id).subscribe({
-          next: (data) => this.isSuccess = true,
+          next: (data) => {
+            this.isSuccess = true;
+            this.fireToastSuccess({ action: "update", product: { ...{ _id: this.selectedProduct._id }, ...prd } })
+          },
           error: (err) => alert(err)
         });
       } else {
         this.prdService.addProduct(prd).subscribe({
-          next: (data) => this.isSuccess = true,
+          next: (data) => {
+            this.isSuccess = true;
+            this.fireToastSuccess({ action: "add", product: { ...{ _id: GeneralMethods.CastCategory(data)._id }, ...prd } })
+          },
           error: (err) => alert(err)
         });
       }
-
-      setTimeout(() => {
-        const timer = setInterval(() => {
-          --this.counter;
-        }, 800);
-
-        setTimeout(() => {
-          clearInterval(timer);
-          this.endAction.emit(
-            {
-              "action": this.isUpdate ? "update" : "add",
-              "product": !this.isUpdate ? { ...prd }
-                : { ...{ "_id": this.selectedProduct._id }, ...prd }
-            });
-        }, 3000);
-      }, 0);
-
     }
     else {
       alert("Not Valid")

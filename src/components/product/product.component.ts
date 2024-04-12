@@ -14,16 +14,18 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
-  btnDisplayToggle = "View";
-  popupProduct: any;
   showTop = false;
+  popupProduct: any;
   selectedProduct: any;
   showDropdown = false;
+  btnDisplayToggle = "View";
   @Input() isViewPopup = false;
-  @Input() isDetailsPopup = false;
   btnSortToggle = "Low to High";
   Products: ProductModel[] = [];
+  @Input() isDetailsPopup = false;
+
   constructor(private service: ProductService) { }
+
   ngOnInit(): void {
     this.service.getProducts().subscribe({
       next: (data) => this.Products = GeneralMethods.CastProducts(data),

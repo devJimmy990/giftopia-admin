@@ -1,5 +1,6 @@
 type CategoryModel = {
-    _id: string;
+    _id?: string;
     name: string;
-    image: string
+    image: string,
+    products?: number
 }

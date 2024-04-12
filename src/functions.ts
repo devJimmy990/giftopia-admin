@@ -1,6 +1,9 @@
 export class GeneralMethods {
+
+    static CastCategory = (param: any) =>
+        (param["data"] as CategoryModel);
     static CastCategories = (param: any) =>
-        (param["data"] as CategoryModel[]);
+        (param["data"] as CategoryModel[]); 
 
     static CastProducts = (param: any) =>
         (param["data"] as ProductModel[]);
