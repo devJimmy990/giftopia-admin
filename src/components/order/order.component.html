@@ -14,7 +14,9 @@
             <div class="card-body">
               @if(pendingOrders.length > 0 || successOrders.length > 0 || cancelledOrders.length > 0 || shippingOrders.length > 0){
                 <div class="container mt-5 ">
-
+                  @if (isViewPopup)
+                            { <app-order-popup [popupOrder]="popupOrder"
+                                (close)="closePopup($event)"></app-order-popup>}
                   @if(pendingOrders.length > 0){
                     <!-- Pending Orders -->
                   <h3>Pending Orders</h3><br>
@@ -32,81 +34,20 @@
                       @for (order of pendingOrders; track order._id) {
                         <tr>
                           <td>{{ order._id }}</td>
-                          <td>{{ order.status }}</td>
+                          @if(!order.isEditing){
+                            <td>{{ order.status }}</td>
+                          } @else {
+                            <select [(ngModel)]="order.tempStatus" class="form-select form-select-sm" style="margin: 10px;">
+                              <option [ngValue]="null" disabled selected>{{ order.status }}</option>
+                              <option value="shipping">Shipping</option>
+                              <option value="success">Success</option>
+                              <option value="cancelled">Cancelled</option>
+                            </select>
+                            <button type="button" (click)="updateOrderStatus(order)" class="action btn btn-primary btn-sm">Save</button>
+                            <button type="button" (click)="cancelEditOrderStatus(order)" class="action btn btn-secondary btn-sm">Cancel</button>
+                          }
                           <td>£{{ calculateTotalPrice(order) }}</td>
                           <td>{{ userNames[order.userId] }}</td>
-                          <td>
-                            <button type="button" (click)="viewOrder(order)"
-                                class="action btn btn-info btn-sm">View</button>
-                            <button type="button" (click)="editOrderStatus(order)" data-bs-toggle="collapse"
-                                href="#top" data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne"
-                                class="action btn btn-warning btn-sm">Edit</button>
-                        </td>
-                        </tr>
-                      }
-                    </tbody>
-                  </table>
-                  <br>
-                  }
-                  
-  
-                  @if(successOrders.length > 0){
-                    <!-- Success Orders -->
-                  <h3>Success Orders</h3><br>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @for (order of successOrders; track order._id) {
-                        <tr>
-                          <td>{{ order._id }}</td>
-                          <td>{{ order.status }}</td>
-                          <td>${{ calculateTotalPrice(order) }}</td>
-                          <td>{{  userNames[order.userId] }}</td>
-                          <td>
-                            <button type="button" (click)="viewOrder(order)"
-                                class="action btn btn-info btn-sm">View</button>
-                            <button type="button" (click)="editOrderStatus(order)" data-bs-toggle="collapse"
-                                href="#top" data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne"
-                                class="action btn btn-warning btn-sm">Edit</button>
-                        </td>
-                        </tr>
-                      }
-                    </tbody>
-                  </table>
-                  <br>
-                  }
-                  
-  
-                  @if(cancelledOrders.length > 0){
-                    <!-- Cancelled Orders -->
-                  <h3>Cancelled Orders</h3><br>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Customer Name</th>
-                        <th scope="col">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @for (order of cancelledOrders; track order._id) {
-                        <tr>
-                          <td>{{ order._id }}</td>
-                          <td>{{ order.status }}</td>
-                          <td>${{ calculateTotalPrice(order) }}</td>
-                          <td>{{  userNames[order.userId]  }}</td>
                           <td>
                             <button type="button" (click)="viewOrder(order)"
                                 class="action btn btn-info btn-sm">View</button>
@@ -139,7 +80,17 @@
                       @for (order of shippingOrders; track order._id) {
                         <tr>
                           <td>{{ order._id }}</td>
-                          <td>{{ order.status }}</td>
+                          @if(!order.isEditing){
+                            <td>{{ order.status }}</td>
+                          } @else {
+                            <select [(ngModel)]="order.tempStatus" class="form-select form-select-sm" style="margin: 10px;">
+                              <option [ngValue]="null" disabled selected>{{ order.status }}</option>
+                              <option value="success">Success</option>
+                              <option value="cancelled">Cancelled</option>
+                            </select>
+                            <button type="button" (click)="updateOrderStatus(order)" class="action btn btn-primary btn-sm">Save</button>
+                            <button type="button" (click)="cancelEditOrderStatus(order)" class="action btn btn-secondary btn-sm">Cancel</button>
+                          }
                           <td>${{ calculateTotalPrice(order) }}</td>
                           <td>{{  userNames[order.userId]  }}</td>
                           <td>
@@ -156,8 +107,70 @@
                   </table>
                   <br>
                   }
+  
+                  @if(successOrders.length > 0){
+                    <!-- Success Orders -->
+                  <h3>Success Orders</h3><br>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (order of successOrders; track order._id) {
+                        <tr>
+                          <td>{{ order._id }}</td>
+                          <td>{{ order.status }}</td>
+                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>{{  userNames[order.userId] }}</td>
+                          <td>
+                            <button type="button" (click)="viewOrder(order)"
+                                class="action btn btn-info btn-sm">View</button>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br>
+                  }
+                  
+  
+                  @if(cancelledOrders.length > 0){
+                    <!-- Cancelled Orders -->
+                  <h3>Cancelled Orders</h3><br>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (order of cancelledOrders; track order._id) {
+                        <tr>
+                          <td>{{ order._id }}</td>
+                          <td>{{ order.status }}</td>
+                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>{{  userNames[order.userId]  }}</td>
+                          <td>
+                            <button type="button" (click)="viewOrder(order)"
+                                href="#top"class="action btn btn-info btn-sm">View</button>
+                        </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br>
+                  }
+                  
                 </div>
-
               } @else{
                 <h3>No Orders Available</h3>
               }

@@ -28,12 +28,12 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <app-user-popup 
-                                        *ngIf="isUserPopupVisible"
-                                        [popupUser]="selectedUser"
-                                        (close)="closeUserPopup()"
-                                    ></app-user-popup>
                                 }
+                                <app-user-popup 
+                                    *ngIf="isUserPopupVisible"
+                                    [popupUser]="selectedUser"
+                                    (close)="closeUserPopup()"
+                                ></app-user-popup>
                             </div>
                         </div>
                     </div>

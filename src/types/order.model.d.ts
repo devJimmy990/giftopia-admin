@@ -1,8 +1,11 @@
 type OrderModel = {
+    isEditingStatus: boolean
     _id: string,
     userId: string,
     products: ProductOrderModel[],
     status: string,
+    isEditing: boolean = false,
+    tempStatus: string = '';
 }
 
 

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneralMethods } from '../../functions';
 import { UserService } from '../../services/user.service';
+import { OrderPopupComponent } from '../order-popup/order-popup.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-order',
-  standalone: true,
-  imports: [HttpClientModule],
-  providers:[OrderService,UserService],
-  templateUrl: './order.component.html',
-  styleUrl: './order.component.css'
+    selector: 'app-order',
+    standalone: true,
+    providers: [OrderService, UserService, OrderPopupComponent],
+    templateUrl: './order.component.html',
+    styleUrl: './order.component.css',
+    imports: [HttpClientModule, OrderPopupComponent, FormsModule]
 })
 export class OrderComponent implements OnInit {
   Orders: OrderModel[] = [];
@@ -22,6 +24,9 @@ export class OrderComponent implements OnInit {
     email: '',
     type: '',
   };
+  popupOrder: any;
+  @Input() isViewPopup = false;
+  @Input() isEditingStatus = false;
   constructor(private service: OrderService, private userService: UserService) { }
   ngOnInit(): void {
     this.service.getOrders().subscribe({
@@ -53,11 +58,39 @@ export class OrderComponent implements OnInit {
   }
 
   viewOrder(order:  OrderModel){
-
+    this.popupOrder = order;
+    this.isViewPopup = true;
   }
 
+  closePopup(e: any) {
+    this.isViewPopup = false;
+  }
+  
   editOrderStatus(order:  OrderModel){
-    
+    order.isEditing = true;
+    order.tempStatus = order.status;
+  }
+
+  updateOrderStatus(order: OrderModel) {
+    if (order.tempStatus && order.tempStatus !== order.status) {
+      this.service.changeOrderStatus(order._id, order.tempStatus).subscribe({
+        next: (data) => {
+          order.status = order.tempStatus;
+          order.isEditing = false;
+          console.log('Order status updated successfully');
+        },
+        error: (err) => {
+          console.log('Failed to update order status');
+        }
+      });
+    } else {
+      order.isEditing = false; // No change in status, just exit editing mode
+    }
+  }
+  
+
+  cancelEditOrderStatus(order: OrderModel) {
+    order.isEditing = false;
   }
 
   get pendingOrders() {
@@ -65,11 +98,11 @@ export class OrderComponent implements OnInit {
   }
 
   get successOrders() {
-    return this.Orders.filter(order => order.status === 'success');
+    return this.Orders.filter(order => !order.isEditing && order.status === 'success');
   }
 
   get cancelledOrders() {
-    return this.Orders.filter(order => order.status === 'cancelled');
+    return this.Orders.filter(order => !order.isEditing && order.status === 'cancelled');
   }
 
   get shippingOrders() {
