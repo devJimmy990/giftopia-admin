@@ -1,7 +1,8 @@
 type OrderModel = {
     _id: string,
     userId: string,
-    products: ProductOrderModel[]
+    products: ProductOrderModel[],
+    status: string,
 }
 
 

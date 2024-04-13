@@ -14,4 +14,7 @@ export class UserService extends BaseService {
   getUsers(): Observable<Object> {
     return this.http.get(this.URL);
   }
+  getUserByID(id: string): Observable<Object> {
+    return this.http.get(`http://localhost:7050/user/${id}`);
+  }
 }

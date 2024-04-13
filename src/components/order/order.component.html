@@ -1,37 +1,134 @@
 <div class="full_container">
-    <div class="inner_container">
+  <div class="inner_container">
+    <div id="content">
+      <div class="midde_cont">
+        <div class="container-fluid">
+          <div class="row column_title">
+            <div class="col-md-12">
+              <div class="page_title">
+                <h2>Order Management</h2>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              @if(pendingOrders.length > 0 || successOrders.length > 0 || cancelledOrders.length > 0 || shippingOrders.length > 0){
+                <div class="container mt-5 ">
 
-        <div id="content">
-            <div class="midde_cont">
-                <div class="container-fluid">
-                    <div class="row column_title">
-                        <div class="col-md-12">
-                            <div class="page_title">
-                                <h2>Order Management</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-
-                        <div class="card-body">
-                            <div class="container mt-5 ">
-                            </div>
-                            <div class="row">
-                                @for (order of Orders; track order._id) {
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                    <div class="single-product">
-                                        <h3 class="product-title">User: {{ order.userId }}</h3>
-                                        <h3 class="product-title">Orders {{ order.products.length }}</h3>
-                                    </div>
-                                </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
+                  @if(pendingOrders.length > 0){
+                    <!-- Pending Orders -->
+                  <h3>Pending Orders</h3>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Customer Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (order of pendingOrders; track order._id) {
+                        <tr>
+                          <td>{{ order._id }}</td>
+                          <td>{{ order.status }}</td>
+                          <td>£{{ calculateTotalPrice(order) }}</td>
+                          <td>{{ userNames[order.userId] }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br>
+                  }
+                  
+  
+                  @if(successOrders.length > 0){
+                    <!-- Success Orders -->
+                  <h3>Success Orders</h3>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Customer Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (order of successOrders; track order._id) {
+                        <tr>
+                          <td>{{ order._id }}</td>
+                          <td>{{ order.status }}</td>
+                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>{{  userNames[order.userId] }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br>
+                  }
+                  
+  
+                  @if(cancelledOrders.length > 0){
+                    <!-- Cancelled Orders -->
+                  <h3>Cancelled Orders</h3>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Customer Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (order of cancelledOrders; track order._id) {
+                        <tr>
+                          <td>{{ order._id }}</td>
+                          <td>{{ order.status }}</td>
+                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>{{  userNames[order.userId]  }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br>
+                  }
+                  
+                  @if(shippingOrders.length > 0){
+                    <!-- Shipping Orders -->
+                  <h3>Shipping Orders</h3>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Customer Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (order of shippingOrders; track order._id) {
+                        <tr>
+                          <td>{{ order._id }}</td>
+                          <td>{{ order.status }}</td>
+                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>{{  userNames[order.userId]  }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                  <br>
+                  }
                 </div>
 
+              } @else{
+                <h3>No Orders Available</h3>
+              }
             </div>
-
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
