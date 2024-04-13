@@ -1,0 +1,35 @@
+<div class="main d-flex justify-content-center align-items-center">
+    <div class="col-lg-7">
+      <div class="card border-0 shadow rounded-5 my-5">
+        <div class="card-body">
+          <div class="user-image text-center">
+            <img src="http://localhost:7050/{{ popupUser.image }}" alt="User Image" class="rounded-circle mx-auto d-block" style="width: 150px; height: 150px; object-fit: cover;">
+          </div>
+          <h3 class="card-title text-center mt-3">{{ popupUser.name }}</h3>
+          <hr class="my-4">
+          <div class="user-info">
+            <div class="info-item d-flex justify-content-between align-items-center">
+              <span class="info-title">Email:</span>
+              <span class="info">{{ popupUser.email }}</span>
+            </div>
+            <div class="info-item d-flex justify-content-between align-items-center">
+              <span class="info-title">Address:</span>
+              <span class="info">{{ popupUser.address }}</span>
+            </div>
+            <div class="info-item d-flex justify-content-between align-items-center">
+              <span class="info-title">Phone Number:</span>
+              <span class="info">{{ popupUser.phone }}</span>
+            </div>
+            <div class="info-item d-flex justify-content-between align-items-center">
+              <span class="info-title">Age:</span>
+              <span class="info">{{ popupUser.age }}</span>
+              <span class="info-title">Gender:</span>
+              <span class="info">{{ popupUser.gender }}</span>
+            </div>
+          </div>
+          <a (click)="closePopup()" role="button" aria-label="Close" class="btn-close position-absolute top-0 end-0 m-3"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  

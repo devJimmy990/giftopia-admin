@@ -18,8 +18,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="container">
-
-
                             @if (isDetailsPopup)
                             { <app-product-details [selectedProduct]="selectedProduct" (close)="closePopup($event)"
                                 (endAction)="closePopup($event)"></app-product-details>}
@@ -52,15 +50,7 @@
                                     <button type="button" class="btn btn-primary btn-floating"
                                         (click)="openDetailedPopup()"><i class="fa fa-plus"></i></button>
                                 </div>
-
                             </div>
-
-
-
-
-
-
-
                             @if (isViewPopup)
                             { <app-popup-product [popupProduct]="popupProduct"
                                 (close)="closePopup($event)"></app-popup-product>}
