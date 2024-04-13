@@ -52,6 +52,14 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  viewOrder(order:  OrderModel){
+
+  }
+
+  editOrderStatus(order:  OrderModel){
+    
+  }
+
   get pendingOrders() {
     return this.Orders.filter(order => order.status === 'pending');
   }
