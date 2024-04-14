@@ -2,6 +2,7 @@
   position: fixed;
   text-align: center;
 }
+
 button{
   background-color: transparent;
   color: black;
@@ -11,6 +12,7 @@ button{
   font-size: 28px;
   border: none;
 }
+
 .img-fill {
   object-fit: cover;
   width: 500px;
