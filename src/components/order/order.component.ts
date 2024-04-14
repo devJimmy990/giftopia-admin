@@ -44,8 +44,10 @@ export class OrderComponent implements OnInit {
     return order.products.reduce((total: number, product: { price: number; soldQuantity: number; discount:number}) => {
       const discountPercentage = product.discount / 100;
       const discountedPrice = product.price * (1 - discountPercentage);
-      return total + discountedPrice * product.soldQuantity;
+      total += discountedPrice * product.soldQuantity;
+      return Number(total.toFixed(2));
     }, 0);
+    
   }
 
   fetchUserNames(): void {
