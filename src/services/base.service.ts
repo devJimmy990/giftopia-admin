@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BaseService {
-  protected BASE_URL = 'http://localhost:7050/admin';
+  protected BASE_URL = 'https://giftopiabackend.onrender.com/admin';
   constructor(protected http: HttpClient) { }
 }

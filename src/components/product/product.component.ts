@@ -42,6 +42,7 @@ export class ProductComponent implements OnInit {
   viewProduct(prd: ProductModel) {
     this.popupProduct = prd;
     this.isViewPopup = true;
+    console.log(prd);
   }
   openDetailedPopup() {
     this.selectedProduct = null;
