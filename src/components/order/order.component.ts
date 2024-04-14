@@ -32,6 +32,7 @@ export class OrderComponent implements OnInit {
     this.service.getOrders().subscribe({
       next: (data) => { 
         this.Orders = GeneralMethods.CastOrders(data); 
+        console.log(this.Orders);
         this.fetchUserNames(); 
       },
       
@@ -40,8 +41,10 @@ export class OrderComponent implements OnInit {
   }
 
   calculateTotalPrice(order: any): number {
-    return order.products.reduce((total: number, product: { price: number; quantity: number; }) => {
-      return total + (product.price * product.quantity);
+    return order.products.reduce((total: number, product: { price: number; soldQuantity: number; discount:number}) => {
+      const discountPercentage = product.discount / 100;
+      const discountedPrice = product.price * (1 - discountPercentage);
+      return total + discountedPrice * product.soldQuantity;
     }, 0);
   }
 
@@ -84,7 +87,7 @@ export class OrderComponent implements OnInit {
         }
       });
     } else {
-      order.isEditing = false; // No change in status, just exit editing mode
+      order.isEditing = false;
     }
   }
   
