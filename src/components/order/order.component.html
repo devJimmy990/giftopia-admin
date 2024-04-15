@@ -26,7 +26,7 @@
                         <th scope="col">Order ID</th>
                         <th scope="col">Status</th>
                         <th scope="col">Total Price</th>
-                        <th scope="col">Customer Name</th>
+                        <!-- <th scope="col">Customer Name</th> -->
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
@@ -47,7 +47,7 @@
                             <button type="button" (click)="cancelEditOrderStatus(order)" class="action btn btn-secondary btn-sm">Cancel</button>
                           }
                           <td>£{{ calculateTotalPrice(order) }}</td>
-                          <td>{{ userNames[order.userId] }}</td>
+                          <!-- <td>{{ userNames[order.userId] }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"
                                 class="action btn btn-info btn-sm">View</button>
@@ -72,7 +72,7 @@
                         <th scope="col">Order ID</th>
                         <th scope="col">Status</th>
                         <th scope="col">Total Price</th>
-                        <th scope="col">Customer Name</th>
+                        <!-- <th scope="col">Customer Name</th> -->
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
@@ -92,7 +92,7 @@
                             <button type="button" (click)="cancelEditOrderStatus(order)" class="action btn btn-secondary btn-sm">Cancel</button>
                           }
                           <td>${{ calculateTotalPrice(order) }}</td>
-                          <td>{{  userNames[order.userId]  }}</td>
+                          <!-- <td>{{  userNames[order.userId]  }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"
                                 class="action btn btn-info btn-sm">View</button>
@@ -117,7 +117,7 @@
                         <th scope="col">Order ID</th>
                         <th scope="col">Status</th>
                         <th scope="col">Total Price</th>
-                        <th scope="col">Customer Name</th>
+                        <!-- <th scope="col">Customer Name</th> -->
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
@@ -127,7 +127,7 @@
                           <td>{{ order._id }}</td>
                           <td>{{ order.status }}</td>
                           <td>${{ calculateTotalPrice(order) }}</td>
-                          <td>{{  userNames[order.userId] }}</td>
+                          <!-- <td>{{  userNames[order.userId] }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"
                                 class="action btn btn-success btn-sm">View</button>
@@ -148,7 +148,7 @@
                         <th scope="col">Order ID</th>
                         <th scope="col">Status</th>
                         <th scope="col">Total Price</th>
-                        <th scope="col">Customer Name</th>
+                        <!-- <th scope="col">Customer Name</th> -->
                         <th scope="col">Actions</th>
                       </tr>
                     </thead>
@@ -158,7 +158,7 @@
                           <td>{{ order._id }}</td>
                           <td>{{ order.status }}</td>
                           <td>${{ calculateTotalPrice(order) }}</td>
-                          <td>{{  userNames[order.userId]  }}</td>
+                          <!-- <td>{{  userNames[order.userId]  }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"
                                 href="#top"class="action btn btn-danger btn-sm">View</button>
