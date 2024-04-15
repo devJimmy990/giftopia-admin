@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BaseService {
-  // protected BASE_URL = 'https://giftopiabackend.onrender.com/admin';
-  protected BASE_URL = 'http://localhost:7050/admin';
+  protected BASE_URL = 'https://giftopiabackend.onrender.com/admin';
+  // protected BASE_URL = 'http://localhost:7050/admin';
  
   constructor(protected http: HttpClient) {
     const token = this.getCurrentToken();
