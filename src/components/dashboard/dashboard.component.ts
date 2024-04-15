@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DashhboardCardComponent } from '../dashhboard-card/dashhboard-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,14 +13,25 @@ import { DashhboardCardComponent } from '../dashhboard-card/dashhboard-card.comp
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
- @Output() dashboard: any;
+  @Output() dashboard: any;
   isLoaded = false;
 
-  constructor(private service: DashboardService) { }
+  constructor(private service: DashboardService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getDashboard().subscribe({
-      next: (data) => { this.dashboard = data, this.isLoaded = true },
+      next: (data) => {
+        this.dashboard = data;
+        console.log(this.dashboard)
+        if (this.dashboard.token) {
+          localStorage.setItem("token", this.dashboard.token[0]["token"]);
+          this.isLoaded = true
+        }
+        else {
+          this.isLoaded = false;
+          this.router.navigate(['/error']);
+        }
+      },
       error: (err) => console.log(err)
     });
   }

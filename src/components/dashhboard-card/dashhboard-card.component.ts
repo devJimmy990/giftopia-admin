@@ -9,10 +9,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './dashhboard-card.component.css'
 })
 export class DashhboardCardComponent {
-@Input() dashboard:any;
+  @Input() dashboard: any;
 
-  constructor() { console.log(this.dashboard) }
-ngOnChanges(changes: SimpleChanges) {
-  console.log(this.dashboard) 
-}
 }

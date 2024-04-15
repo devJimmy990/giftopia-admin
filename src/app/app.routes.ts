@@ -7,6 +7,7 @@ import { TicketComponent } from '../components/ticket/ticket.component';
 import { UserComponent } from '../components/user/user.component';
 import { SettingsComponent } from '../components/settings/settings.component';
 import { TermsConditionsComponent } from '../components/terms-conditions/terms-conditions.component';
+import { ErrorComponent } from '../components/error/error.component';
 
 export const routes: Routes = [
     { path: "", component: DashboardComponent },
@@ -19,7 +20,7 @@ export const routes: Routes = [
     { path: "user", component: UserComponent },
     { path: "settings", component: SettingsComponent },
     { path: "terms", component: TermsConditionsComponent },
-    { path: "**", component: DashboardComponent },
+    { path: "**", component: ErrorComponent },
 ];
 
 /*
