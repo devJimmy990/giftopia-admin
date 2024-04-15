@@ -33,7 +33,7 @@ export class OrderComponent implements OnInit {
       next: (data) => { 
         this.Orders = GeneralMethods.CastOrders(data); 
         console.log(this.Orders);
-        this.fetchUserNames(); 
+        //this.fetchUserNames(); 
       },
       
       error: (err) => console.log(err)
@@ -50,17 +50,17 @@ export class OrderComponent implements OnInit {
     
   }
 
-  fetchUserNames(): void {
-    this.Orders.forEach(order => {
-      this.userService.getUserByID(order.userId).subscribe({
-        next: (user: any) => {
-          user = GeneralMethods.CastUser(user);
-          this.userNames[order.userId] = user.name;
-        },
-        error: (err) => console.log(err)
-      });
-    });
-  }
+  // fetchUserNames(): void {
+  //   this.Orders.forEach(order => {
+  //     this.userService.getUserByID(order.userId).subscribe({
+  //       next: (user: any) => {
+  //         user = GeneralMethods.CastUser(user);
+  //         this.userNames[order.userId] = user.name;
+  //       },
+  //       error: (err) => console.log(err)
+  //     });
+  //   });
+  // }
 
   viewOrder(order:  OrderModel){
     this.popupOrder = order;

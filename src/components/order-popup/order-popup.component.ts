@@ -23,14 +23,14 @@ export class OrderPopupComponent implements OnInit{
   @Output() close = new EventEmitter();
 
   ngOnInit(): void {
-    this.userService.getUserByID(this.popupOrder.userId).subscribe({
-      next: (data) => {
-        this.user = GeneralMethods.CastUser1(data);
-      },
-      error: (err) => {
-        console.error('Failed to fetch user:', err);
-      }
-    })
+    // this.userService.getUserByID(this.popupOrder.userId).subscribe({
+    //   next: (data) => {
+    //     this.user = GeneralMethods.CastUser1(data);
+    //   },
+    //   error: (err) => {
+    //     console.error('Failed to fetch user:', err);
+    //   }
+    // })
   }
 
   closePopup() {
