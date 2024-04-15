@@ -16,18 +16,20 @@
                             </div>
                             <div class="row">
                                 @for (user of Users; track user._id) {
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                        <a (click)="openUserPopup(user)">
-                                            <div class="card h-100">
-                                                <div class="card-image-container">
-                                                    <img class="card-img-top" src="http://localhost:7050/{{ user.image }}" alt="user">
+                                    @if(user.userType !== 'admin'){
+                                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                            <a (click)="openUserPopup(user)">
+                                                <div class="card h-100">
+                                                    <div class="card-image-container">
+                                                        <img class="card-img-top" src="http://localhost:7050/{{ user.image }}" alt="user">
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">{{ user.name }}</h5>
+                                                    </div>
                                                 </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title">{{ user.name }}</h5>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                            </a>
+                                        </div>
+                                    }
                                 }
                                 <app-user-popup 
                                     *ngIf="isUserPopupVisible"
