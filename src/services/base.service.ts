@@ -10,10 +10,10 @@ export class BaseService {
   protected BASE_URL = 'http://localhost:7050/admin';
  
   constructor(protected http: HttpClient) {
-    const token = this.getCurrentToken();
-    if (token) {
-      this.overrideMethods(token);
-    }
+    // const token = this.getCurrentToken();
+    // if (token) {
+    //   this.overrideMethods(token);
+    // }
   }
 
   private overrideMethods(token: string | null) {
