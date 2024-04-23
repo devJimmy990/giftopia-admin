@@ -46,7 +46,7 @@
                             <button type="button" (click)="updateOrderStatus(order)" class="action btn btn-primary btn-sm">Save</button>
                             <button type="button" (click)="cancelEditOrderStatus(order)" class="action btn btn-secondary btn-sm">Cancel</button>
                           }
-                          <td>£{{ calculateTotalPrice(order) }}</td>
+                          <td>£{{ order.total }}</td>
                           <!-- <td>{{ userNames[order.userId] }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"
@@ -91,7 +91,7 @@
                             <button type="button" (click)="updateOrderStatus(order)" class="action btn btn-primary btn-sm">Save</button>
                             <button type="button" (click)="cancelEditOrderStatus(order)" class="action btn btn-secondary btn-sm">Cancel</button>
                           }
-                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>${{ order.total }}</td>
                           <!-- <td>{{  userNames[order.userId]  }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"
@@ -126,7 +126,7 @@
                         <tr>
                           <td>{{ order._id }}</td>
                           <td>{{ order.status }}</td>
-                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>${{ order.total }}</td>
                           <!-- <td>{{  userNames[order.userId] }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"
@@ -157,7 +157,7 @@
                         <tr>
                           <td>{{ order._id }}</td>
                           <td>{{ order.status }}</td>
-                          <td>${{ calculateTotalPrice(order) }}</td>
+                          <td>${{ order.total }}</td>
                           <!-- <td>{{  userNames[order.userId]  }}</td> -->
                           <td>
                             <button type="button" (click)="viewOrder(order)"

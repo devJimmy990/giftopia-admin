@@ -1,4 +1,18 @@
-<a href="/{{dashboard.path}}" target="_blank" class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 mx-auto text-decoration-none text-dark">
+@if (dashboard.path != 'sales') {
+    <a routerLink="/{{dashboard.path}}" target="_blank" class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 mx-auto text-decoration-none text-dark">
+        <div
+            class="card bg-light shadow border-0 rounded-lg text-center p-4 d-flex flex-column justify-content-center align-items-center">
+            <div class="icon mb-3">
+                <i class="{{dashboard.class}} fa-3x text-primary transition"></i>
+            </div>
+            <div class="info">
+                <h5 class="total-number mb-2 font-weight-bold transition">{{dashboard.total}}</h5>
+                <p class="title mb-0 text-muted">{{dashboard.title}}</p>
+            </div>
+        </div>
+    </a>
+}@else{
+    <a  class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 mx-auto text-decoration-none text-dark">
     <div
         class="card bg-light shadow border-0 rounded-lg text-center p-4 d-flex flex-column justify-content-center align-items-center">
         <div class="icon mb-3">
@@ -10,3 +24,4 @@
         </div>
     </div>
 </a>
+}

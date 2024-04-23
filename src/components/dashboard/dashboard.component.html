@@ -14,35 +14,41 @@
                <div class="container">
                   <div class="row justify-content-center">
                       
-                     <div class="col-md-6 col-lg-4 mb-4">
+                     <div class="col-md-6 col-lg-4 mb-1">
                         <app-dashhboard-card
                            [dashboard]="{ total: dashboard.products, title: 'Products', path: 'product', class: 'fa fa-diamond purple_color' }"></app-dashhboard-card>
                      </div>
 
                      <!-- Categories Card -->
-                     <div class="col-md-6 col-lg-4 mb-4">
+                     <div class="col-md-6 col-lg-4 mb-1">
                         <app-dashhboard-card
                            [dashboard]="{ total: dashboard.categories, title: 'Categories', path: 'category', class: 'fa fa-table orange_color' }"></app-dashhboard-card>
                      </div>
 
                      <!-- Orders Card -->
-                     <div class="col-md-6 col-lg-4 mb-4">
+                     <div class="col-md-6 col-lg-4 mb-1">
                         <app-dashhboard-card
-                           [dashboard]="{ total: dashboard.orders, title: 'Orders', path: 'order', class: 'fa fa-cart-plus green_color' }"></app-dashhboard-card>
+                           [dashboard]="{ total: dashboard.orders.length, title: 'Orders', path: 'order', class: 'fa fa-cart-plus green_color' }"></app-dashhboard-card>
                      </div>
 
                      <!-- Tickets Card -->
-                     <div class="col-md-6 col-lg-4 mb-4">
+                     <div class="col-md-6 col-lg-4 mb-1">
                         <app-dashhboard-card
                            [dashboard]="{ total: dashboard.tickets, title: 'Tickets', path: 'ticket', class: 'fa fa-comments-o red_color' }"></app-dashhboard-card>
                      </div>
 
                      <!-- Users Card -->
-                     <div class="col-md-6 col-lg-4 mb-4">
+                     <div class="col-md-6 col-lg-4 mb-1">
                         <app-dashhboard-card
                            [dashboard]="{ total: dashboard.users, title: 'Users', path: 'user', class: 'fa fa-users blue1_color' }"></app-dashhboard-card>
                      </div>
 
+                     <div class="d-flex justify-content-center col-12 mb-1 align-self-center">
+                        <a href="#sales">
+                           <app-dashhboard-card 
+                           [dashboard]="{ total: sales, path:'sales', title: 'Sales', class: 'fa fa-dollar green_color' }"></app-dashhboard-card>
+                        </a>
+                     </div>
                   </div>
                </div>
 
@@ -52,6 +58,11 @@
                   <span class="visually-hidden">Loading...</span>
                </div>
                }
+
+               <div class="page_title">
+                  <h2>Statistics</h2>
+                  <app-sales id="sales"> </app-sales>
+               </div>
             </div>
          </div>
       </div>

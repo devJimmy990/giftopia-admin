@@ -2,6 +2,8 @@ type OrderModel = {
     isEditingStatus: boolean
     _id: string,
     userId: string,
+    total: number,
+    method: string,
     products: ProductOrderModel[],
     status: string,
     isEditing: boolean = false,

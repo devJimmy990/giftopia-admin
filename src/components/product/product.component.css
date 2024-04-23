@@ -1,17 +1,18 @@
+.hide{
+  color: transparent;
+}
 .btn-floating {
-  margin: 5px;
+  margin: 2.5px;
   height: 60px;
-  width: 60px;
   border: none;
   font-size: 24px;
   color: #fff;
   border-radius: 50%;
   text-align: center;
-  position: relative;
   overflow: hidden;
   background-color: #007bff;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  transition: color 0.3s;
+  transition: color 0.3s; 
   z-index: 1;
 }
 
@@ -52,7 +53,6 @@
   transform: translateX(-200%);
 }
 
-
 tr,
 td {
   text-align: center;
@@ -75,11 +75,11 @@ img {
 
 
 
-#sort {
+.sort {
   --color: #155da9;
   font-family: inherit;
   display: inline-block;
-  width: 16em;
+  width: 10em;
   height: 2.6em;
   line-height: 2.5em;
   overflow: hidden;
@@ -94,7 +94,7 @@ img {
   font-weight: bold;
 }
 
-#sort::before {
+.sort::before {
   position: absolute;
   content: "";
   background: var(--color);
@@ -104,29 +104,29 @@ img {
   border-radius: 50%;
 }
 
-#sort:hover {
+.sort:hover {
   color: white;
 }
 
-#sort:before {
+.sort:before {
   top: 100%;
   left: 100%;
   transition: 0.3s all;
 }
 
-#sort:hover::before {
+.sort:hover::before {
   top: -30px;
   left: -30px;
 }
 
-#sort:hover span {
+.sort:hover span {
   color: #155da9;
 }
 
 .dropdown-menu.show {
   --color: #155da9;
   z-index: 1000;
-  min-width: 16em;
+  width: 12em;
   padding: 0.5em 0;
   margin: -0.125em 0 0;
   font-size: 1rem;

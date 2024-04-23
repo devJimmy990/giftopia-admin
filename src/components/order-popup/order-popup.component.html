@@ -4,7 +4,10 @@
       <div class="card-body">
         <!-- Order ID and Status -->
         <h3 class="card-title text-center mt-3">Order ID: {{ popupOrder._id }}</h3>
-        <h5 class="text-center text-muted">Status: {{ popupOrder.status }}</h5>
+        <div class="d-flex justify-content-evenly">
+          <h5 class="text-center text-muted">Status: {{ popupOrder.status }}</h5>
+          <h5 class="text-center text-muted">Payment Method: {{ popupOrder.method }}</h5>
+        </div>
         <hr class="my-4">
 
         <!-- User Info -->
@@ -19,6 +22,7 @@
 
         <!-- Products Bought -->
         <div class="products-bought">
+          <h5 class="mb-3">Fees: {{popupOrder.method =='cash'?'40':'30'}}</h5>
           <h5 class="mb-3">Products:</h5>
           @for (product of popupOrder.products; track popupOrder._id) {
             <div class="product-item d-flex align-items-center mb-2">
@@ -26,7 +30,8 @@
               <div>
                 <h6 class="mb-0">{{ product.name }}</h6>
                 <p class="mb-0 text-muted">Quantity: {{ product.soldQuantity }}</p>
-                <p class="mb-0 text-muted">Price Per Piece: £{{ product.price }}</p>
+                <p class="mb-0 text-muted">Price Per Piece: £{{ product.soldPrice }}</p>
+                <p class="mb-0 fw-bolder text-end text-black">Total: £{{ product.soldPrice * product.soldQuantity }}</p>
               </div>
             </div>
           }

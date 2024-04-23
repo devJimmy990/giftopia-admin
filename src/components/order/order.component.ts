@@ -7,12 +7,12 @@ import { OrderPopupComponent } from '../order-popup/order-popup.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-order',
-    standalone: true,
-    providers: [OrderService, UserService, OrderPopupComponent],
-    templateUrl: './order.component.html',
-    styleUrl: './order.component.css',
-    imports: [HttpClientModule, OrderPopupComponent, FormsModule]
+  selector: 'app-order',
+  standalone: true,
+  providers: [OrderService, UserService, OrderPopupComponent],
+  templateUrl: './order.component.html',
+  styleUrl: './order.component.css',
+  imports: [HttpClientModule, OrderPopupComponent, FormsModule]
 })
 export class OrderComponent implements OnInit {
   Orders: OrderModel[] = [];
@@ -30,24 +30,14 @@ export class OrderComponent implements OnInit {
   constructor(private service: OrderService, private userService: UserService) { }
   ngOnInit(): void {
     this.service.getOrders().subscribe({
-      next: (data) => { 
-        this.Orders = GeneralMethods.CastOrders(data); 
+      next: (data) => {
+        this.Orders = GeneralMethods.CastOrders(data);
         console.log(this.Orders);
         //this.fetchUserNames(); 
       },
-      
+
       error: (err) => console.log(err)
     });
-  }
-
-  calculateTotalPrice(order: any): number {
-    return order.products.reduce((total: number, product: { price: number; soldQuantity: number; discount:number}) => {
-      const discountPercentage = product.discount / 100;
-      const discountedPrice = product.price * (1 - discountPercentage);
-      total += discountedPrice * product.soldQuantity;
-      return Number(total.toFixed(2));
-    }, 0);
-    
   }
 
   // fetchUserNames(): void {
@@ -62,7 +52,8 @@ export class OrderComponent implements OnInit {
   //   });
   // }
 
-  viewOrder(order:  OrderModel){
+  viewOrder(order: OrderModel) {
+    console.log(order);
     this.popupOrder = order;
     this.isViewPopup = true;
   }
@@ -70,8 +61,8 @@ export class OrderComponent implements OnInit {
   closePopup(e: any) {
     this.isViewPopup = false;
   }
-  
-  editOrderStatus(order:  OrderModel){
+
+  editOrderStatus(order: OrderModel) {
     order.isEditing = true;
     order.tempStatus = order.status;
   }
@@ -92,7 +83,7 @@ export class OrderComponent implements OnInit {
       order.isEditing = false;
     }
   }
-  
+
 
   cancelEditOrderStatus(order: OrderModel) {
     order.isEditing = false;
